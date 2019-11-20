@@ -6,7 +6,7 @@ services:
     volumes:
       - redis:/data
   superset:
-    image: superset
+    image: timaliev/superset-docker
     restart: always
     depends_on:
       - redis

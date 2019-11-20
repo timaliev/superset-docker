@@ -17,7 +17,7 @@ services:
     volumes:
       - mysql:/var/lib/mysql
   superset:
-    image: amancevice/superset
+    image: timaliev/superset-docker
     restart: always
     depends_on:
       - mysql
