@@ -59,6 +59,8 @@ COPY --from=dist /tmp/superset.tar.gz .
 RUN useradd -U -m superset && \
     mkdir -p /etc/superset && \
     mkdir -p ${SUPERSET_HOME} && \
+    mkdir -p ${SUPERSET_HOME}/db && \
+    mkdir -p ${SUPERSET_HOME}/upload && \
     chown -R superset:superset /etc/superset && \
     chown -R superset:superset ${SUPERSET_HOME} && \
     apt-get update && \
