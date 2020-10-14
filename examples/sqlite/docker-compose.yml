@@ -1,13 +1,13 @@
-version: '3'
+version: "3"
 services:
   redis:
     image: redis
-    restart: always
+    restart: unless-stopped
     volumes:
       - redis:/data
   superset:
     image: timaliev/superset-docker
-    restart: always
+    restart: unless-stopped
     depends_on:
       - redis
     environment:
@@ -17,6 +17,7 @@ services:
       - "8088:8088"
     volumes:
       - ./superset_config.py:/etc/superset/superset_config.py
+      - ../mapbox_api.key:/mapbox_api.key
       - superset:/var/lib/superset
 volumes:
   redis:

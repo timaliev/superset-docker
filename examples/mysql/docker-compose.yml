@@ -1,14 +1,14 @@
-version: '3'
+version: "3"
 services:
   redis:
     image: redis
-    restart: always
+    restart: unless-stopped
     volumes:
       - redis:/data
   mysql:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     image: mysql:5
-    restart: always
+    restart: unless-stopped
     environment:
       MYSQL_DATABASE: superset
       MYSQL_PASSWORD: superset
@@ -18,7 +18,7 @@ services:
       - mysql:/var/lib/mysql
   superset:
     image: timaliev/superset-docker
-    restart: always
+    restart: unless-stopped
     depends_on:
       - mysql
       - redis
@@ -28,6 +28,7 @@ services:
       - "8088:8088"
     volumes:
       - ./superset_config.py:/etc/superset/superset_config.py
+      - ../mapbox_api.key:/mapbox_api.key
 volumes:
   mysql:
   redis:
