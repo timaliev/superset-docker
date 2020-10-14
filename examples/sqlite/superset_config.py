@@ -1,6 +1,10 @@
 import os
+from pathlib import Path
 
 MAPBOX_API_KEY = os.getenv('MAPBOX_API_KEY', '')
+if MAPBOX_API_KEY == '':
+    MAPBOX_API_KEY = Path("/mapbox_api.key").read_text()
+
 CACHE_CONFIG = {
     'CACHE_TYPE': 'redis',
     'CACHE_DEFAULT_TIMEOUT': 300,
